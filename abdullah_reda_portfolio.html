@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عبد الله رضا | مصور وثائقي وميداني - Abdullah Reda Portfolio</title>
+    
+    <!-- Google Fonts: Cairo & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0A0A0C',
+                            dark: '#121216',
+                            card: '#1A1A22',
+                            gold: '#D4AF37',
+                            goldLight: '#E5C158',
+                            goldDark: '#AA8828',
+                            muted: '#8E8E9A'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #0A0A0C;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0A0C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2D2D38;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+
+        /* Glow effects */
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+        .gold-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Glassmorphic effect */
+        .glass-panel {
+            background: rgba(26, 26, 34, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        /* Gradient text */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF 0%, #E5C158 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Modal Overlay */
+        .modal-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-gray-100 selection:bg-brand-gold selection:text-black">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-panel border-b border-brand-gold/20" id="main-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo / Name -->
+                <a href="#home" class="flex flex-col group">
+                    <span class="text-xl sm:text-2xl font-black tracking-wider text-white group-hover:text-brand-gold transition">
+                        عبد الله رضا
+                    </span>
+                    <span class="text-xs text-brand-gold tracking-widest font-light font-playfair uppercase">
+                        Abdullah Reda Photography
+                    </span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1 space-x-reverse text-sm font-medium">
+                    <a href="#home" class="px-3 py-2 rounded-lg text-gray-300 hover:text-brand-gold hover:bg-white/5 transition">الرئيسية</a>
+                    <a href="#gallery" class="px-3 py-2 rounded-lg text-gray-300 hover:text-brand-gold hover:bg-white/5 transition">معرض الأعمال</a>
+                    <a href="#stories" class="px-3 py-2 rounded-lg text-gray-300 hover:text-brand-gold hover:bg-white/5 transition">حكاية صورة</a>
+                    <a href="#domain-guide" class="px-3 py-2 rounded-lg text-gray-300 hover:text-brand-gold hover:bg-white/5 transition">دليل الدومين والموقع</a>
+                    <a href="#about" class="px-3 py-2 rounded-lg text-gray-300 hover:text-brand-gold hover:bg-white/5 transition">عن المصور</a>
+                    <a href="#contact" class="mr-4 px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-gold to-brand-goldDark text-black font-bold hover:brightness-110 transition gold-glow">
+                        تواصل معي
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-brand-gold/10 px-4 pt-2 pb-6 space-y-2">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-md text-base text-gray-300 hover:text-brand-gold hover:bg-white/5">الرئيسية</a>
+            <a href="#gallery" class="mobile-link block px-3 py-2 rounded-md text-base text-gray-300 hover:text-brand-gold hover:bg-white/5">معرض الأعمال</a>
+            <a href="#stories" class="mobile-link block px-3 py-2 rounded-md text-base text-gray-300 hover:text-brand-gold hover:bg-white/5">حكاية صورة</a>
+            <a href="#domain-guide" class="mobile-link block px-3 py-2 rounded-md text-base text-gray-300 hover:text-brand-gold hover:bg-white/5">دليل الدومين والموقع</a>
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base text-gray-300 hover:text-brand-gold hover:bg-white/5">عن المصور</a>
+            <a href="#contact" class="mobile-link block text-center mt-4 px-5 py-2.5 rounded-full bg-brand-gold text-black font-bold">تواصل معي</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Ambient Background Glow & Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Background" 
+                 class="w-full h-full object-cover opacity-20 filter grayscale scale-105 transition-transform duration-10000 hover:scale-100"
+                 onerror="this.src='https://placehold.co/1920x1080/121216/D4AF37?text=Abdullah+Reda+Photography'">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-black/90 via-transparent to-brand-black/90"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
+            <!-- Subtitle Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs sm:text-sm font-semibold mb-6">
+                <i class="fa-solid fa-camera text-xs"></i>
+                <span>مصور صحفي وميداني وثائقي</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+                توثيق اللحظة.. <br/>
+                <span class="gold-gradient-text">حيث تتحدث التفاصيل الإنسانية</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-gray-400 text-base sm:text-lg mb-10 leading-relaxed font-light">
+                أهلاً بك. أنا <strong class="text-white">عبد الله رضا</strong>، متخصص في التغطيات الميدانية والإنسانية، نقل الواقع بعدسة صادقة تلتقط الأمل، المعاناة، والقصص التي لا تُرصَد بالكلمات.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#gallery" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-brand-gold to-brand-goldDark text-black font-extrabold text-base hover:shadow-lg gold-glow-hover transition transform hover:-translate-y-0.5">
+                    استكشف معرض الصور
+                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                </a>
+                <a href="#stories" class="w-full sm:w-auto px-8 py-4 rounded-full glass-panel text-white hover:text-brand-gold border border-gray-700 hover:border-brand-gold/50 font-semibold transition">
+                    خلف الكواليس (قصص ميدانية)
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-4xl mx-auto pt-8 border-t border-gray-800/80">
+                <div class="p-4 rounded-xl glass-panel">
+                    <span class="block text-2xl sm:text-3xl font-black text-brand-gold">5+</span>
+                    <span class="text-xs text-gray-400">سنوات خبرة ميدانية</span>
+                </div>
+                <div class="p-4 rounded-xl glass-panel">
+                    <span class="block text-2xl sm:text-3xl font-black text-brand-gold">120+</span>
+                    <span class="text-xs text-gray-400">تغطية وتقرير مصور</span>
+                </div>
+                <div class="p-4 rounded-xl glass-panel">
+                    <span class="block text-2xl sm:text-3xl font-black text-brand-gold">15+</span>
+                    <span class="text-xs text-gray-400">مؤسسة ومجلة إعلامية</span>
+                </div>
+                <div class="p-4 rounded-xl glass-panel">
+                    <span class="block text-2xl sm:text-3xl font-black text-brand-gold">100%</span>
+                    <span class="text-xs text-gray-400">مصداقية وعدسة وثائقية</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Gallery Section -->
+    <section id="gallery" class="py-24 relative bg-brand-dark/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold tracking-widest text-brand-gold uppercase mb-2">Portfolio Showcase</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">معرض الأعمال الميدانية والوثائقية</h3>
+                <p class="text-gray-400 mt-3 text-sm sm:text-base">تصفح اللقطات مقسمة حسب طبيعة العمل والتغطية</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-12" id="filter-buttons">
+                <button data-filter="all" class="filter-btn active px-6 py-2.5 rounded-full text-sm font-bold bg-brand-gold text-black transition">
+                    الكل
+                </button>
+                <button data-filter="field" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-brand-card text-gray-300 hover:text-white hover:bg-gray-800 border border-gray-800 transition">
+                    <i class="fa-solid fa-hands-holding-circle ml-2 text-brand-gold"></i> تغطية ميدانية وإنسانية
+                </button>
+                <button data-filter="portrait" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-brand-card text-gray-300 hover:text-white hover:bg-gray-800 border border-gray-800 transition">
+                    <i class="fa-solid fa-user text-brand-gold ml-2"></i> بورتريه وتفاصيل إنسانية
+                </button>
+                <button data-filter="stories" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-brand-card text-gray-300 hover:text-white hover:bg-gray-800 border border-gray-800 transition">
+                    <i class="fa-solid fa-newspaper text-brand-gold ml-2"></i> لقطات صحفية خاصة
+                </button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+                
+                <!-- Card 1 -->
+                <div class="gallery-item field group relative rounded-2xl overflow-hidden glass-panel border border-gray-800 hover:border-brand-gold/40 transition duration-500 cursor-pointer"
+                     onclick="openLightbox('عين على الميدان', 'تغطية إنسانية شاملة لعمليات الإغاثة والدعم الميداني في المناطق النائية.', 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200', 'تغطية ميدانية', 'مصر / 2024')">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800" 
+                             alt="تغطية ميدانية" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700 filter contrast-105"
+                             onerror="this.src='https://placehold.co/800x600/121216/D4AF37?text=Field+Photo+1'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                        <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-brand-gold text-xs px-3 py-1 rounded-full border border-brand-gold/20 font-semibold">
+                            تغطية ميدانية
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white group-hover:text-brand-gold transition">عين على الميدان</h4>
+                        <p class="text-gray-400 text-sm mt-2 line-clamp-2">توثيق الجهود الإغاثية المتواصلة والتلاحم الشعبي في المواقف الصعبة.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-3">
+                            <span><i class="fa-regular fa-calendar ml-1"></i> 2024</span>
+                            <span class="text-brand-gold font-semibold">عرض التفاصيل <i class="fa-solid fa-arrow-left mr-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="gallery-item portrait group relative rounded-2xl overflow-hidden glass-panel border border-gray-800 hover:border-brand-gold/40 transition duration-500 cursor-pointer"
+                     onclick="openLightbox('ملامح الصمود', 'بورتريه وثائقي يبرز التجاعيد التي تعكس سنين النضال والأمل في عيون كبار السن.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200', 'بورتريه', 'مصر / 2023')">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" 
+                             alt="بورتريه إنساني" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700 filter grayscale group-hover:grayscale-0"
+                             onerror="this.src='https://placehold.co/800x600/121216/D4AF37?text=Portrait+1'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                        <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-brand-gold text-xs px-3 py-1 rounded-full border border-brand-gold/20 font-semibold">
+                            بورتريه
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white group-hover:text-brand-gold transition">ملامح الصمود</h4>
+                        <p class="text-gray-400 text-sm mt-2 line-clamp-2">بورتريهات مكثفة تتحدث بلسان العاطفة والتجارب الحياتية القاسية.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-3">
+                            <span><i class="fa-regular fa-calendar ml-1"></i> 2023</span>
+                            <span class="text-brand-gold font-semibold">عرض التفاصيل <i class="fa-solid fa-arrow-left mr-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="gallery-item stories group relative rounded-2xl overflow-hidden glass-panel border border-gray-800 hover:border-brand-gold/40 transition duration-500 cursor-pointer"
+                     onclick="openLightbox('نبض الشارع', 'لقطة خاطفة تسجل حركة وحياة المواطنين اليومية في الأسواق الشعبية القديمة.', 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=1200', 'لقطات صحفية', 'القاهرة / 2024')">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=800" 
+                             alt="لقطة صحفية" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                             onerror="this.src='https://placehold.co/800x600/121216/D4AF37?text=Street+Photo+1'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                        <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-brand-gold text-xs px-3 py-1 rounded-full border border-brand-gold/20 font-semibold">
+                            لقطات صحفية
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white group-hover:text-brand-gold transition">نبض الشارع</h4>
+                        <p class="text-gray-400 text-sm mt-2 line-clamp-2">توثيق حياة المدينة وحركة الناس اليومية بعيداً عن التكلف.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-3">
+                            <span><i class="fa-regular fa-calendar ml-1"></i> 2024</span>
+                            <span class="text-brand-gold font-semibold">عرض التفاصيل <i class="fa-solid fa-arrow-left mr-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="gallery-item field group relative rounded-2xl overflow-hidden glass-panel border border-gray-800 hover:border-brand-gold/40 transition duration-500 cursor-pointer"
+                     onclick="openLightbox('خط الدفاع الأول', 'التقاطة خاصة للفرق الطبية والمسعفين في أوقات الطوارئ.', 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=1200', 'تغطية ميدانية', '2023')">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800" 
+                             alt="فريق الإسعاف" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                             onerror="this.src='https://placehold.co/800x600/121216/D4AF37?text=Field+Photo+2'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                        <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-brand-gold text-xs px-3 py-1 rounded-full border border-brand-gold/20 font-semibold">
+                            تغطية ميدانية
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white group-hover:text-brand-gold transition">خط الدفاع الأول</h4>
+                        <p class="text-gray-400 text-sm mt-2 line-clamp-2">تسليط الضوء على الأبطال المجهولين أثناء العمل تحت ضغوط عالية.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-3">
+                            <span><i class="fa-regular fa-calendar ml-1"></i> 2023</span>
+                            <span class="text-brand-gold font-semibold">عرض التفاصيل <i class="fa-solid fa-arrow-left mr-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="gallery-item portrait group relative rounded-2xl overflow-hidden glass-panel border border-gray-800 hover:border-brand-gold/40 transition duration-500 cursor-pointer"
+                     onclick="openLightbox('ابتسامة خلف الغبار', 'صورة لطفل يعيد بناء الأمل بابتسامة رغم كل التحديات حوله.', 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200', 'بورتريه', '2024')">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800" 
+                             alt="ابتسامة طفل" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                             onerror="this.src='https://placehold.co/800x600/121216/D4AF37?text=Portrait+2'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                        <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-brand-gold text-xs px-3 py-1 rounded-full border border-brand-gold/20 font-semibold">
+                            بورتريه
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white group-hover:text-brand-gold transition">ابتسامة خلف الغبار</h4>
+                        <p class="text-gray-400 text-sm mt-2 line-clamp-2">البراءة والصدق في ملامح الأطفال أثناء التغطيات الإنسانية.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-3">
+                            <span><i class="fa-regular fa-calendar ml-1"></i> 2024</span>
+                            <span class="text-brand-gold font-semibold">عرض التفاصيل <i class="fa-solid fa-arrow-left mr-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="gallery-item stories group relative rounded-2xl overflow-hidden glass-panel border border-gray-800 hover:border-brand-gold/40 transition duration-500 cursor-pointer"
+                     onclick="openLightbox('ظلال وقصص', 'استخدام التباين العالي والإضاءة الطبيعية لإنشاء صورة تعبيرية عميقة.', 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200', 'لقطات صحفية', '2023')">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800" 
+                             alt="كاميرا وثائقية" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700 filter grayscale"
+                             onerror="this.src='https://placehold.co/800x600/121216/D4AF37?text=Story+Photo+2'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                        <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-brand-gold text-xs px-3 py-1 rounded-full border border-brand-gold/20 font-semibold">
+                            لقطات صحفية
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white group-hover:text-brand-gold transition">ظلال وقصص</h4>
+                        <p class="text-gray-400 text-sm mt-2 line-clamp-2">فن التقاط التفاصيل غير المرئية من خلال التباين والإضاءة الطبيعية.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-3">
+                            <span><i class="fa-regular fa-calendar ml-1"></i> 2023</span>
+                            <span class="text-brand-gold font-semibold">عرض التفاصيل <i class="fa-solid fa-arrow-left mr-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section (حكاية صورة) -->
+    <section id="stories" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                
+                <!-- Image Side -->
+                <div class="w-full lg:w-1/2">
+                    <div class="relative rounded-3xl overflow-hidden glass-panel p-2 border border-brand-gold/30 gold-glow">
+                        <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1000" 
+                             alt="قصة صورة" 
+                             class="w-full h-[450px] object-cover rounded-2xl filter contrast-110"
+                             onerror="this.src='https://placehold.co/800x800/121216/D4AF37?text=Story+Cover'">
+                        <div class="absolute bottom-6 right-6 left-6 p-4 rounded-xl bg-black/80 backdrop-blur-md border border-white/10">
+                            <span class="text-brand-gold font-bold text-xs">دراسة حالة ميدانية</span>
+                            <h4 class="text-white text-lg font-bold">تغطية قوافل الإغاثة في الصعيد</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Narrative Details -->
+                <div class="w-full lg:w-1/2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold text-xs font-semibold mb-4">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>خلف الكواليس - Case Study</span>
+                    </div>
+                    
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-6 leading-snug">
+                        كيف تحول اللحظة العابرة إلى قصة مؤشرة تعيش للأبد؟
+                    </h3>
+
+                    <p class="text-gray-300 text-base mb-6 leading-relaxed">
+                        في هذه التغطية الميدانية، لم تكن المهمة مجرد التقاط صور للفرق وهي تؤدي عملها، بل كان الهدف هو إبراز المشاعر الحقيقية في عيون الأهالي والأطفال لحظة وصول الدعم.
+                    </p>
+
+                    <!-- Details Grid -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="p-4 rounded-xl glass-panel border border-gray-800">
+                            <span class="text-xs text-brand-gold font-bold block mb-1">المعدات المستخدمة</span>
+                            <span class="text-sm text-gray-200">Sony A7IV + 35mm f/1.4</span>
+                        </div>
+                        <div class="p-4 rounded-xl glass-panel border border-gray-800">
+                            <span class="text-xs text-brand-gold font-bold block mb-1">ظروف الإضاءة</span>
+                            <span class="text-sm text-gray-200">ضوء الشمس المباشر / التباين العالي</span>
+                        </div>
+                        <div class="p-4 rounded-xl glass-panel border border-gray-800">
+                            <span class="text-xs text-brand-gold font-bold block mb-1">الرؤية الفنية</span>
+                            <span class="text-sm text-gray-200">تركيز على الوجوه والتفاصيل الدقيقة</span>
+                        </div>
+                        <div class="p-4 rounded-xl glass-panel border border-gray-800">
+                            <span class="text-xs text-brand-gold font-bold block mb-1">النتيجة والانتشار</span>
+                            <span class="text-sm text-gray-200">نُشرت في أكثر من 4 منصات إعلامية</span>
+                        </div>
+                    </div>
+
+                    <blockquote class="p-4 border-r-4 border-brand-gold bg-brand-card/50 text-gray-300 text-sm italic rounded-l-xl">
+                        "الصورة الوثائقية الناجحة ليست التي تبهر العين فقط، بل التي تحرك القلوب وتدفع نحو الفعل الإنساني."
+                    </blockquote>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Domain & Website Setup Guide (Interactive Calculator & Steps) -->
+    <section id="domain-guide" class="py-24 bg-brand-dark relative border-t border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-4 py-1.5 rounded-full bg-brand-gold/10 text-brand-gold text-xs font-extrabold uppercase tracking-widest border border-brand-gold/20">
+                    Guide & Roadmap
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white mt-4">دليل إطلاق موقعك ودومينك الخاص</h2>
+                <p class="text-gray-400 mt-3 text-sm sm:text-base">
+                    خطوات سريعة وحاسبة تفاعلية لتحديد أفضل منصة ودومين لبناء بورتفوليو احترافي مثل هذا!
+                </p>
+            </div>
+
+            <!-- Interactive Platform Estimator -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                
+                <!-- Interactive Selector Box -->
+                <div class="lg:col-span-2 glass-panel p-6 sm:p-8 rounded-3xl border border-brand-gold/20">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-brand-gold"></i>
+                        حاسبة تكلفة وتجهيز الموقع الاحترافي
+                    </h3>
+
+                    <div class="space-y-6">
+                        <!-- Step 1: Domain Selection -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">1. اختيار امتداد الدومين (Domain Name):</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <button type="button" onclick="selectDomain('.com', 12)" class="domain-opt p-3 rounded-xl border border-brand-gold bg-brand-gold/10 text-white text-center text-sm font-bold transition">
+                                    .com
+                                    <span class="block text-xs font-normal text-brand-gold mt-1">$12/سنة</span>
+                                </button>
+                                <button type="button" onclick="selectDomain('.me', 15)" class="domain-opt p-3 rounded-xl border border-gray-800 bg-brand-card text-gray-400 text-center text-sm font-bold hover:border-brand-gold transition">
+                                    .me
+                                    <span class="block text-xs font-normal text-gray-500 mt-1">$15/سنة</span>
+                                </button>
+                                <button type="button" onclick="selectDomain('.photography', 25)" class="domain-opt p-3 rounded-xl border border-gray-800 bg-brand-card text-gray-400 text-center text-sm font-bold hover:border-brand-gold transition">
+                                    .photography
+                                    <span class="block text-xs font-normal text-gray-500 mt-1">$25/سنة</span>
+                                </button>
+                                <button type="button" onclick="selectDomain('.co', 18)" class="domain-opt p-3 rounded-xl border border-gray-800 bg-brand-card text-gray-400 text-center text-sm font-bold hover:border-brand-gold transition">
+                                    .co
+                                    <span class="block text-xs font-normal text-gray-500 mt-1">$18/سنة</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Host / Platform Selection -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">2. منصة الاستضافة أو البناء (Hosting / Platform):</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <button type="button" onclick="selectPlatform('Framer / Webflow', 15, 'تصميم عصري وسلس بدون أكواد')" class="platform-opt p-4 rounded-xl border border-brand-gold bg-brand-gold/10 text-right transition">
+                                    <span class="block font-bold text-white text-sm">Framer / Webflow</span>
+                                    <span class="text-xs text-brand-gold block mt-1">~$15 / شهرياً</span>
+                                </button>
+                                <button type="button" onclick="selectPlatform('WordPress.org + Host', 5, 'مرونة كاملة وتحكم مطلق')" class="platform-opt p-4 rounded-xl border border-gray-800 bg-brand-card text-right transition">
+                                    <span class="block font-bold text-white text-sm">WordPress + استضافة</span>
+                                    <span class="text-xs text-gray-400 block mt-1">~$5 / شهرياً</span>
+                                </button>
+                                <button type="button" onclick="selectPlatform('GitHub Pages / HTML', 0, 'مجاني تماماً (تحتاج رافع أكواد)')" class="platform-opt p-4 rounded-xl border border-gray-800 bg-brand-card text-right transition">
+                                    <span class="block font-bold text-white text-sm">GitHub Pages (HTML)</span>
+                                    <span class="text-xs text-gray-400 block mt-1">مجاني 100%</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Summary Calculation -->
+                        <div class="p-4 rounded-2xl bg-black/60 border border-brand-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <span class="text-xs text-gray-400 block">التكلفة التقديرية السنوية:</span>
+                                <span class="text-2xl font-black text-brand-gold" id="total-cost">$192 / سنوياً</span>
+                                <span class="text-xs text-gray-500 block mt-0.5" id="cost-breakdown">(دومين $12 + استضافة $15/شهر)</span>
+                            </div>
+                            <a href="#contact" class="px-6 py-3 rounded-full bg-brand-gold text-black font-bold text-sm hover:brightness-110 transition">
+                                احصل على مساعدة في التنفيذ
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Recommended Steps Checklist -->
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-brand-gold"></i>
+                            خطوات إطلاق موقعك اليوم
+                        </h3>
+                        
+                        <ul class="space-y-4 text-xs sm:text-sm text-gray-300">
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-xs">1</span>
+                                <div>
+                                    <strong class="text-white block">حجز اسم الدومين:</strong>
+                                    اشترِ اسمك مثل <code class="text-brand-gold">abdullahreda.com</code> عبر Namecheap أو Cloudflare.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-xs">2</span>
+                                <div>
+                                    <strong class="text-white block">تنسيق الصور والجودة:</strong>
+                                    اضغط الصور بصيغة WEBP لتسريع تحميل الموقع دون فقدان الجودة.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-xs">3</span>
+                                <div>
+                                    <strong class="text-white block">ربط الدومين بالموقع:</strong>
+                                    قم بتوجيه الـ DNS Records إلى منصة التضييف الخاصة بك بسهولة.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-gray-800 text-xs text-gray-400">
+                        <i class="fa-solid fa-lightbulb text-brand-gold ml-1"></i>
+                        نصيحة: احرص دائماً على إضافة رابط البورتفوليو في حسابك على Instagram وBehance.
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Photographer Photo -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden glass-panel border border-brand-gold/30 p-3 gold-glow">
+                        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&q=80&w=800" 
+                             alt="عبد الله رضا" 
+                             class="w-full h-[500px] object-cover rounded-2xl filter contrast-105"
+                             onerror="this.src='https://placehold.co/600x800/121216/D4AF37?text=Abdullah+Reda'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent rounded-2xl"></div>
+                        <div class="absolute bottom-8 right-8 left-8">
+                            <span class="text-brand-gold font-bold text-sm block">عبد الله رضا</span>
+                            <span class="text-xs text-gray-300">Documentary & Visual Storyteller</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio & Skills -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold text-xs font-semibold">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span>نبذة عن المصور</span>
+                    </div>
+
+                    <h3 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+                        شغف بالوثائقيات.. <br/>
+                        والتقاط القصص التي لا تُنسى
+                    </h3>
+
+                    <p class="text-gray-300 text-base leading-relaxed font-light">
+                        مصور صحفي وميداني متمكن، أركز على التغطيات الإنسانية والمبادرات الميدانية. أمتلك خبرة واسعة في العمل تحت أوقات الضغط والتواجد في قلب الأحداث لنقل الصورة بكل حقيقة وأمانة بصريّة.
+                    </p>
+
+                    <!-- Features/Skills list -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-brand-card/60 border border-gray-800">
+                            <i class="fa-solid fa-camera-retro text-brand-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">التغطية الميدانية السريعة</h4>
+                                <p class="text-xs text-gray-400">سرعة الاستجابة والالتقاط الحاد للمواقف والمستجدات.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-brand-card/60 border border-gray-800">
+                            <i class="fa-solid fa-heart text-brand-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">البورتريه الوثائقي</h4>
+                                <p class="text-xs text-gray-400">إبراز التعبيرات والمشاعر الصادقة بعيداً عن التكلف.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-brand-card/60 border border-gray-800">
+                            <i class="fa-solid fa-photo-film text-brand-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">المعالجة الرقمية الاحترافية</h4>
+                                <p class="text-xs text-gray-400">تحرير وتنسيق الألوان بما يحافظ على واقعية المشهد.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-brand-card/60 border border-gray-800">
+                            <i class="fa-solid fa-bullhorn text-brand-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">صناعة المحتوى البصري</h4>
+                                <p class="text-xs text-gray-400">إعداد تقارير وقصص مصورة متكاملة للمؤسسات والمنصات.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct Social Links -->
+                    <div class="pt-6 flex flex-wrap items-center gap-4">
+                        <span class="text-sm text-gray-400 font-semibold">تابع أعمالي على:</span>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-gray-700 flex items-center justify-center text-gray-300 hover:text-brand-gold hover:border-brand-gold transition">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-gray-700 flex items-center justify-center text-gray-300 hover:text-brand-gold hover:border-brand-gold transition">
+                            <i class="fa-brands fa-behance text-lg"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-gray-700 flex items-center justify-center text-gray-300 hover:text-brand-gold hover:border-brand-gold transition">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-gray-700 flex items-center justify-center text-gray-300 hover:text-brand-gold hover:border-brand-gold transition">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-brand-dark/80 relative border-t border-gray-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold text-brand-gold tracking-widest uppercase">Get in Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">تواصل وحجز التغطيات المصورة</h2>
+                <p class="text-gray-400 text-sm mt-2">هل لديك مشروع وثائقي أو تغطية ميدانية تحتاج إلى عدسة احترافية؟ اترك رسالتك وسأرد عليك في أقرب وقت.</p>
+            </div>
+
+            <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-brand-gold/20 gold-glow">
+                <form id="contact-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">الاسم بالكامل</label>
+                            <input type="text" required placeholder="أدخل اسمك الكريم" class="w-full px-4 py-3 rounded-xl bg-brand-black border border-gray-800 text-white focus:outline-none focus:border-brand-gold transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">البريد الإلكتروني</label>
+                            <input type="email" required placeholder="example@domain.com" class="w-full px-4 py-3 rounded-xl bg-brand-black border border-gray-800 text-white focus:outline-none focus:border-brand-gold transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">نوع الخدمة / التغطية</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-brand-black border border-gray-800 text-white focus:outline-none focus:border-brand-gold transition">
+                                <option>تغطية ميدانية وإنسانية</option>
+                                <option>جلسة بورتريه وثائقي</option>
+                                <option>تقارير مصورة للمؤسسات</option>
+                                <option>استشارة ومعالجة بصريّة</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">رقم الهاتف / الواتساب</label>
+                            <input type="tel" placeholder="+20 1xx xxx xxxx" class="w-full px-4 py-3 rounded-xl bg-brand-black border border-gray-800 text-white focus:outline-none focus:border-brand-gold transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">تفاصيل المشروع أو التغطية</label>
+                        <textarea rows="4" required placeholder="اكتب تفاصيل الفكرة، التاريخ والمكان المتوقع..." class="w-full px-4 py-3 rounded-xl bg-brand-black border border-gray-800 text-white focus:outline-none focus:border-brand-gold transition"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-gold to-brand-goldDark text-black font-extrabold text-base hover:brightness-110 transition gold-glow">
+                        إرسال الرسالة الآن
+                        <i class="fa-solid fa-paper-plane mr-2"></i>
+                    </button>
+                </form>
+
+                <!-- Status notification box -->
+                <div id="form-status" class="hidden mt-4 p-4 rounded-xl text-center text-sm font-bold"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Lightbox Modal Preview -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <div class="relative max-w-4xl w-full glass-panel rounded-3xl border border-brand-gold/30 overflow-hidden">
+            <button onclick="closeLightbox()" class="absolute top-4 left-4 z-10 w-10 h-10 rounded-full bg-black/60 text-white hover:text-brand-gold flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="h-80 md:h-auto overflow-hidden bg-black flex items-center justify-center">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span id="modal-category" class="text-xs font-bold text-brand-gold px-3 py-1 rounded-full bg-brand-gold/10 border border-brand-gold/30"></span>
+                            <span id="modal-date" class="text-xs text-gray-500"></span>
+                        </div>
+                        <h3 id="modal-title" class="text-2xl font-bold text-white mb-4"></h3>
+                        <p id="modal-desc" class="text-gray-300 text-sm leading-relaxed mb-6"></p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                        <span class="text-xs text-gray-500">تصوير: عبد الله رضا</span>
+                        <button onclick="closeLightbox()" class="px-5 py-2 rounded-full bg-brand-gold text-black text-xs font-bold">إغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-brand-black border-t border-gray-900 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 عبد الله رضا | جميع الحقوق محفوظة - Photography Portfolio</p>
+            <div class="flex items-center gap-4">
+                <a href="#home" class="hover:text-brand-gold transition">الرئيسية</a>
+                <a href="#gallery" class="hover:text-brand-gold transition">المعرض</a>
+                <a href="#domain-guide" class="hover:text-brand-gold transition">الدليل</a>
+                <a href="#contact" class="hover:text-brand-gold transition">التواصل</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Gallery Filter System
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-brand-gold', 'text-black');
+                    b.classList.add('bg-brand-card', 'text-gray-300');
+                });
+
+                btn.classList.add('active', 'bg-brand-gold', 'text-black');
+                btn.classList.remove('bg-brand-card', 'text-gray-300');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Modal Logic
+        function openLightbox(title, desc, imgSrc, category, date) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-img').src = imgSrc;
+            document.getElementById('modal-category').innerText = category;
+            document.getElementById('modal-date').innerText = date;
+
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        // Domain & Platform Calculator Logic
+        let currentDomainCost = 12;
+        let currentPlatformCost = 15;
+        let selectedDomainName = '.com';
+        let selectedPlatformName = 'Framer / Webflow';
+
+        function selectDomain(name, cost) {
+            currentDomainCost = cost;
+            selectedDomainName = name;
+            
+            document.querySelectorAll('.domain-opt').forEach(el => {
+                el.classList.remove('border-brand-gold', 'bg-brand-gold/10', 'text-white');
+                el.classList.add('border-gray-800', 'bg-brand-card', 'text-gray-400');
+            });
+            event.currentTarget.classList.add('border-brand-gold', 'bg-brand-gold/10', 'text-white');
+            event.currentTarget.classList.remove('border-gray-800', 'bg-brand-card', 'text-gray-400');
+
+            updateCostSummary();
+        }
+
+        function selectPlatform(name, cost, desc) {
+            currentPlatformCost = cost;
+            selectedPlatformName = name;
+
+            document.querySelectorAll('.platform-opt').forEach(el => {
+                el.classList.remove('border-brand-gold', 'bg-brand-gold/10');
+                el.classList.add('border-gray-800', 'bg-brand-card');
+            });
+            event.currentTarget.classList.add('border-brand-gold', 'bg-brand-gold/10');
+            event.currentTarget.classList.remove('border-gray-800', 'bg-brand-card');
+
+            updateCostSummary();
+        }
+
+        function updateCostSummary() {
+            const annualCost = currentDomainCost + (currentPlatformCost * 12);
+            document.getElementById('total-cost').innerText = `$${annualCost} / سنوياً`;
+            document.getElementById('cost-breakdown').innerText = `(دومين ${selectedDomainName} $${currentDomainCost} + استضافة $${currentPlatformCost}/شهر)`;
+        }
+
+        // Contact Form Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const statusBox = document.getElementById('form-status');
+            statusBox.classList.remove('hidden', 'bg-red-900/50', 'text-red-300');
+            statusBox.classList.add('bg-green-900/50', 'text-green-300', 'border', 'border-green-500/30');
+            statusBox.innerText = 'تم إرسال رسالتك بنجاح! سيتم التواصل معك قريباً يا أستاذ عبد الله.';
+            
+            document.getElementById('contact-form').reset();
+
+            setTimeout(() => {
+                statusBox.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
